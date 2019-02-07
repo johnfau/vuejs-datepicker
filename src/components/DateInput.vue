@@ -123,7 +123,7 @@ export default {
         const parsedDate = moment(this.input.value, ["DD-MM-YYYY","MM-YYYY","DD/MM/YYYY","MM/YYYY","DD.MM.YYYY","DDMMYYYY","YYYY-MM-DD", "x"]).toDate();        
         if (!isNaN(parsedDate)) {
           this.typedDate = this.input.value
-          this.$emit('typedDate', new Date(this.typedDate))
+          this.$emit('typedDate', parsedDate)
         }
       }
     },
