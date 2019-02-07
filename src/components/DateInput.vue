@@ -39,7 +39,9 @@
   </div>
 </template>
 <script>
-import { makeDateUtils } from '../utils/DateUtils'
+import { makeDateUtils } from '../utils/DateUtils';
+import moment from 'moment';
+
 export default {
   props: {
     selectedDate: Date,
@@ -118,8 +120,8 @@ export default {
       }
 
       if (this.typeable) {
-        const typedDate = Date.parse(this.input.value)
-        if (!isNaN(typedDate)) {
+        const parsedDate = moment(this.input.value, ["DD-MM-YYYY","MM-YYYY","DD/MM/YYYY","MM/YYYY","DD.MM.YYYY","DDMMYYYY","YYYY-MM-DD", "x"]).toDate();        
+        if (!isNaN(parsedDate)) {
           this.typedDate = this.input.value
           this.$emit('typedDate', new Date(this.typedDate))
         }
@@ -130,10 +132,13 @@ export default {
      * called once the input is blurred
      */
     inputBlurred () {
-      if (this.typeable && isNaN(Date.parse(this.input.value))) {
+      const parsedDate = moment(this.input.value, ["DD-MM-YYYY","MM-YYYY","DD/MM/YYYY","MM/YYYY","DD.MM.YYYY","DDMMYYYY","YYYY-MM-DD", "x"]).toDate();
+      if (this.typeable && isNaN(parsedDate)) {
         this.clearDate()
         this.input.value = null
         this.typedDate = null
+      } else {
+        this.typedDate = moment(parsedDate).format("DD-MM-YYYY");
       }
 
       this.$emit('closeCalendar')
