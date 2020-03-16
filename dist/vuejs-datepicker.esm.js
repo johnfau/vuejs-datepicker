@@ -401,7 +401,7 @@ var DateInput = {render: function(){var _vm=this;var _h=_vm.$createElement;var _
       }
 
       if (this.typeable) {
-        var parsedDate = moment(this.input.value, ["DD-MM-YYYY","MM-YYYY","DD/MM/YYYY","MM/YYYY","DD.MM.YYYY","DDMMYYYY","YYYY-MM-DD", "x"]).toDate();        
+        var parsedDate = moment(this.input.value, ["DD-MM-YYYY","MM-YYYY","DD/MM/YYYY","MM/YYYY","DD.MM.YYYY","DDMMYYYY","YYYY-MM-DD","YYYY", "x"]).toDate();        
         if (!isNaN(parsedDate)) {
           this.typedDate = this.input.value;
           this.$emit('typedDate', parsedDate);
@@ -413,7 +413,7 @@ var DateInput = {render: function(){var _vm=this;var _h=_vm.$createElement;var _
      * called once the input is blurred
      */
     inputBlurred: function inputBlurred () {
-      var parsedDate = moment(this.input.value, ["DD-MM-YYYY","MM-YYYY","DD/MM/YYYY","MM/YYYY","DD.MM.YYYY","DDMMYYYY","YYYY-MM-DD", "x"]).toDate();
+      var parsedDate = moment(this.input.value, ["DD-MM-YYYY","MM-YYYY","DD/MM/YYYY","MM/YYYY","DD.MM.YYYY","DDMMYYYY","YYYY-MM-DD","YYYY", "x"]).toDate();
       if (this.typeable && isNaN(parsedDate)) {
         this.clearDate();
         this.input.value = null;
